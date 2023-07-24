@@ -1,27 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+ 
+*{
+  margin:0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.learning_steps_home_section{
+  display: flex;
+  justify-content: space-evenly;
+  /* width: 90%;
+  margin-left:10%; */
+}
+.learning_steps_home_section .section{
+  width: 33vw;
+  margin:20px 5vw;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.footer-container{
+  height: 300px;
+  background-color: rgb(64, 62, 62);
 }
