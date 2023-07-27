@@ -1,0 +1,14 @@
+.note-review-info{
+    min-height: 60vh;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-gap:10px;
+    margin: 20px 5px;
+};
+
+.note-review-info .note-review-section{
+    height: 500px;
+    margin:30px 0;
+}
+ 
+ 
