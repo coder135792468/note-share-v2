@@ -1,0 +1,14 @@
+.search-header-field{
+    min-height: 50vh;
+    padding-bottom: 30px;
+}
+.search-header-filter-container{
+    display: flex;
+    justify-content: center;
+}
+.search-header-notes-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap:20px 10px;
+}
+
