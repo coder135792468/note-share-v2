@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,900;1,700&display=swap');
+ 
 *{
   margin:0;
   padding: 0;
@@ -18,7 +18,4 @@
 .footer-container{
   height: 300px;
   background-color: rgb(64, 62, 62);
-}
-.home-typewritter-text{
-  font-family: 'Alumni Sans', sans-serif;
 }

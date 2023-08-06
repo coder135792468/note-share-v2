@@ -1,3 +1,4 @@
+"use client";
 import Header from "../Header";
 import { Footer } from "../Footer";
 import "./style.css";
@@ -5,11 +6,7 @@ import { FormControlLabel } from "@mui/material";
 import { MyCheckBox } from "../shared/MyCheckBox";
 import { NoteCard } from "../shared/NoteCard";
 
-const getAllNotes = async ()=>{
-    const res = await fetch('http://localhost:8080/notes?size=30&sort=id,asec');
-    return res.json();
-}
-export default async  function Search() {
+export default function Search() {
   const filters_data = [
     { label: "English" },
     { label: "Maths" },
@@ -50,9 +47,6 @@ export default async  function Search() {
       author: "Darvi",
     },
   ];
-  
-  const data =await getAllNotes();
-  console.log(data);
   return (
     <div>
       <Header />

@@ -14,12 +14,12 @@ import { FcGoogle } from "react-icons/fc";
 
 const LoginButton = () => {
   const { data: session } = useSession();
+  console.log(session);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  if(session === undefined)return null;
   return (
     <span className="ml-auto flex gap-2">
       {session?.user ? (
