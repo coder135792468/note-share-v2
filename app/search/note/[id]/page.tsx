@@ -1,15 +1,9 @@
+"use client";
+import { useState } from "react";
 import { Footer } from "@/app/Footer";
 import Header from "@/app/Header";
 import "./style.css";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Input,
-  Paper,
-  Divider,
-} from "@mui/material";
+import { Typography, Button, Divider } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
 export default function NotePage() {
@@ -21,7 +15,10 @@ export default function NotePage() {
           className="note-review-section"
           style={{ background: "rgba(0,0,0,.2)" }}
         >
-          One
+          <iframe
+            style={{ width: "100%", height: "100%" }}
+            src="https://firebasestorage.googleapis.com/v0/b/notes-share-3ba29.appspot.com/o/files%2Fdocument.pdf?alt=media&token=07bc60e9-c102-42d7-be4d-5f84180d46b5"
+          />
         </div>
         <div className="note-review-section">
           <div className="note-review-section-header">
@@ -83,7 +80,14 @@ export default function NotePage() {
               </Grid>
             </div>
             <Divider />
-            <Button color='success' variant="contained" style={{margin:'10px'}}>Download Note</Button>
+
+            <Button
+              color="success"
+              variant="contained"
+              style={{ margin: "10px" }}
+            >
+              Download Note
+            </Button>
           </div>
         </div>
       </div>

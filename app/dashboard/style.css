@@ -1,0 +1,39 @@
+.dashboard-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+}
+.dashboard-upload-cards-container{
+    height:200px;
+    color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+    padding: 20px;
+    -webkit-user-select: none;
+    user-select: none;
+    display: inline-block;
+
+}
+.file-upload-button{
+    width: 100%;
+    height: 10%;
+    background-color: #34ed37;
+    display: flex;
+    padding: 40px 0;
+    justify-content: center;
+    align-items: center;
+    font-weight: 200;
+}
+
+.download-count{
+    background-color: rgb(72, 80, 235);
+    color:yellow;
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 2.5rem;
+    text-align: center;
+}
+.my-upload-list{
+    height: calc(100vh - 150px);
+    background-color: aliceblue;
+}
