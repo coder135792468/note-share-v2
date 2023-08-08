@@ -5,11 +5,11 @@ import { FormControlLabel } from "@mui/material";
 import { MyCheckBox } from "../shared/MyCheckBox";
 import { NoteCard } from "../shared/NoteCard";
 
-const getAllNotes = async ()=>{
-    const res = await fetch('http://localhost:8080/notes?size=30&sort=id,asec');
-    return res.json();
-}
-export default async  function Search() {
+const getAllNotes = async () => {
+  const res = await fetch("http://localhost:8080/notes?size=30&sort=id,asec");
+  return res.json();
+};
+export default async function Search() {
   const filters_data = [
     { label: "English" },
     { label: "Maths" },
@@ -18,7 +18,7 @@ export default async  function Search() {
   ];
   const notes_data = [
     {
-      id:1,
+      id: 1,
       title: "Answer/Questions Notes for 10th Class English.",
       desc: "English notes for 10th Standard.",
       subject: "English",
@@ -26,7 +26,7 @@ export default async  function Search() {
       author: "Hamzatauqr",
     },
     {
-      id:2,
+      id: 2,
       title: "Maths Formula For 10th Class",
       desc: "I hope those formula will help you to improve your mathematics",
       subject: "Maths",
@@ -34,7 +34,7 @@ export default async  function Search() {
       author: "Darvi",
     },
     {
-      id:3,
+      id: 3,
       title: "Answer/Questions Notes for 10th Class English.",
       desc: "English notes for 10th Standard.",
       subject: "English",
@@ -42,7 +42,7 @@ export default async  function Search() {
       author: "Hamzatauqr",
     },
     {
-      id:4,
+      id: 4,
       title: "Maths Formula For 10th Class",
       desc: "I hope those formula will help you to improve your mathematics",
       subject: "Maths",
@@ -50,9 +50,8 @@ export default async  function Search() {
       author: "Darvi",
     },
   ];
-  
-  const data =await getAllNotes();
-  console.log(data);
+
+  // const data =await getAllNotes();
   return (
     <div>
       <Header />
@@ -70,7 +69,7 @@ export default async  function Search() {
 
         <div className="search-header-notes-card">
           {notes_data?.map((note) => (
-            <NoteCard note={note}/>
+            <NoteCard note={note} />
           ))}
         </div>
       </div>
