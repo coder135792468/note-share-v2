@@ -1,11 +1,11 @@
 "use client";
 
 import React, { Dispatch, createContext, useReducer } from "react";
-
 type StateType = {};
 
 type ActionType = {
   type: string;
+  payload?: any;
 };
 
 const initialState: StateType = {

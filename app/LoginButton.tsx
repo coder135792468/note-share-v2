@@ -19,7 +19,7 @@ const LoginButton = () => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  if(session === undefined)return null;
+  if (session === undefined) return null;
   return (
     <span className="ml-auto flex gap-2">
       {session?.user ? (
