@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import Header from "../Header";
 import { UploadButton } from "../shared/UploadButton";
 import "./style.css";

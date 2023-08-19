@@ -51,7 +51,7 @@ export default async function Search() {
     },
   ];
 
-  // const data =await getAllNotes();
+  const data = await getAllNotes();
   return (
     <div>
       <Header />
