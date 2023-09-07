@@ -4,12 +4,15 @@ import "./style.css";
 import { FormControlLabel } from "@mui/material";
 import { MyCheckBox } from "../shared/MyCheckBox";
 import { NoteCard } from "../shared/NoteCard";
+import axios from "axios";
 
-const getAllNotes = async () => {
-  const res = await fetch("http://localhost:8080/notes?size=30&sort=id,asec");
-  return res.json();
+const getAllNotes = async (search: string = "") => {
+  const res = await axios.get(
+    `http://localhost:8080/notes?size=30&sort=id,asec&search=${search}`
+  );
+  return res.data;
 };
-export default async function Search() {
+export default async function Search({ searchParams: { search } }: any) {
   const filters_data = [
     { label: "English" },
     { label: "Maths" },
@@ -51,7 +54,8 @@ export default async function Search() {
     },
   ];
 
-  const data = await getAllNotes();
+  const data = await getAllNotes(search);
+  console.log(data);
   return (
     <div>
       <Header />
@@ -68,7 +72,7 @@ export default async function Search() {
         </div>
 
         <div className="search-header-notes-card">
-          {notes_data?.map((note) => (
+          {data?.notes?.map((note: any) => (
             <NoteCard note={note} />
           ))}
         </div>
