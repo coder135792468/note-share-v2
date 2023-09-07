@@ -6,7 +6,8 @@ import "./style.css";
 import { Typography, Button, Divider } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
-export default function NotePage() {
+export default function NotePage(props: any) {
+  console.log(props);
   return (
     <div>
       <Header />

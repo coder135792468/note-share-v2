@@ -9,6 +9,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 
@@ -77,6 +78,9 @@ const LoginButton = () => {
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
             <MenuItem> {session.user.name} </MenuItem>
+            <Link style={{ textDecoration: "none" }} href="/dashboard">
+              <MenuItem> Dashboard</MenuItem>
+            </Link>
             <Divider />
             <MenuItem onClick={async () => await signOut()}>
               <strong>Sign Out</strong>

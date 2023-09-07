@@ -1,16 +1,15 @@
 "use client";
-
 import Header from "@/app/Header";
 import { Footer } from "./Footer";
 import "./globals.css";
 import { Typewriter } from "react-simple-typewriter";
 
-export default async function Home(props: any) {
+export default function Home(props: any) {
   return (
     <div>
       <Header />
 
-      <div>
+      <div className="landing-poster-container">
         <img
           src={"https://docmerit.com/images/home.webp"}
           alt={""}
@@ -18,18 +17,20 @@ export default async function Home(props: any) {
           height={"90%"}
         />
         <h1 className="home-typewritter-text">
-          <Typewriter
-            words={[
-              "There is no end to education. It is not that you read a book, pass an examination, and finish with education. ",
-              "The whole of life, from the moment you are born to the moment you die, is a process of learning.",
-            ]}
-            cursorBlinking={true}
-            cursor={true}
-            loop={false}
-            delaySpeed={2000}
-            typeSpeed={100}
-            deleteSpeed={200}
-          />
+          <p style={{ width: "90%" }}>
+            <Typewriter
+              words={[
+                "There is no end to education. It is not that you read a book, pass an examination, and finish with education. ",
+                "The whole of life, from the moment you are born to the moment you die, is a process of learning.",
+              ]}
+              cursorBlinking={true}
+              cursor={true}
+              loop={false}
+              delaySpeed={2000}
+              typeSpeed={100}
+              deleteSpeed={200}
+            />
+          </p>
         </h1>
       </div>
       <div className="learning_steps_home_section">
