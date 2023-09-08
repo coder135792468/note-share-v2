@@ -1,9 +1,9 @@
 import Header from "../Header";
 import { Footer } from "../Footer";
 import "./style.css";
-import { FormControlLabel } from "@mui/material";
+import { FormControlLabel, Grid } from "@mui/material";
 import { MyCheckBox } from "../shared/MyCheckBox";
-import { NoteCard } from "../shared/NoteCard";
+import NoteContainer from "../shared/NoteContainer";
 import axios from "axios";
 
 const getAllNotes = async (search: string = "") => {
@@ -19,41 +19,6 @@ export default async function Search({ searchParams: { search } }: any) {
     { label: "Physics" },
     { label: "Chemistry" },
   ];
-  const notes_data = [
-    {
-      id: 1,
-      title: "Answer/Questions Notes for 10th Class English.",
-      desc: "English notes for 10th Standard.",
-      subject: "English",
-      qualification: "10th",
-      author: "Hamzatauqr",
-    },
-    {
-      id: 2,
-      title: "Maths Formula For 10th Class",
-      desc: "I hope those formula will help you to improve your mathematics",
-      subject: "Maths",
-      qualification: "10th",
-      author: "Darvi",
-    },
-    {
-      id: 3,
-      title: "Answer/Questions Notes for 10th Class English.",
-      desc: "English notes for 10th Standard.",
-      subject: "English",
-      qualification: "10th",
-      author: "Hamzatauqr",
-    },
-    {
-      id: 4,
-      title: "Maths Formula For 10th Class",
-      desc: "I hope those formula will help you to improve your mathematics",
-      subject: "Maths",
-      qualification: "10th",
-      author: "Darvi",
-    },
-  ];
-
   const data = await getAllNotes(search);
   console.log(data);
   return (
@@ -70,12 +35,7 @@ export default async function Search({ searchParams: { search } }: any) {
             />
           ))}
         </div>
-
-        <div className="search-header-notes-card">
-          {data?.notes?.map((note: any) => (
-            <NoteCard note={note} />
-          ))}
-        </div>
+        <NoteContainer {...data} />
       </div>
       <Footer />
     </div>

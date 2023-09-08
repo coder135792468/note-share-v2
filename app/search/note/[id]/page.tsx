@@ -1,13 +1,17 @@
-"use client";
-import { useState } from "react";
 import { Footer } from "@/app/Footer";
 import Header from "@/app/Header";
 import "./style.css";
 import { Typography, Button, Divider } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import axios from "axios";
 
-export default function NotePage(props: any) {
-  console.log(props);
+const getNoteData = async (id: string = "") => {
+  const res = await axios.get(`http://localhost:8080/notes/${id}`);
+  return res.data;
+};
+export default async function NotePage({ params: { id } }: any) {
+  const data = await getNoteData(id);
+  console.log(data);
   return (
     <div>
       <Header />
@@ -16,10 +20,7 @@ export default function NotePage(props: any) {
           className="note-review-section"
           style={{ background: "rgba(0,0,0,.2)" }}
         >
-          <iframe
-            style={{ width: "100%", height: "100%" }}
-            src="https://firebasestorage.googleapis.com/v0/b/notes-share-3ba29.appspot.com/o/files%2Fdocument.pdf?alt=media&token=07bc60e9-c102-42d7-be4d-5f84180d46b5"
-          />
+          <iframe style={{ width: "100%", height: "100%" }} src={data?.file} />
         </div>
         <div className="note-review-section">
           <div className="note-review-section-header">
@@ -39,16 +40,16 @@ export default function NotePage(props: any) {
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
               >
                 <Grid xs={6}>
-                  <div>Institution</div>
-                </Grid>
-                <Grid xs={6}>
-                  <div>10th NOTES ENGLISH</div>
-                </Grid>
-                <Grid xs={6}>
                   <div>Course</div>
                 </Grid>
                 <Grid xs={6}>
-                  <div>Class 10</div>
+                  <div>{data?.qualification}</div>
+                </Grid>
+                <Grid xs={6}>
+                  <div>Subject</div>
+                </Grid>
+                <Grid xs={6}>
+                  <div>{data?.subject}</div>
                 </Grid>
               </Grid>
             </div>
@@ -64,19 +65,14 @@ export default function NotePage(props: any) {
                   <div>Course Code</div>
                 </Grid>
                 <Grid xs={6}>
-                  <div>10th NOTES ENGLISH</div>
+                  <div>{data?.title}</div>
                 </Grid>
-                <Grid xs={6}>
-                  <div>Written</div>
-                </Grid>
-                <Grid xs={6}>
-                  <div>20 April,2021</div>
-                </Grid>
+
                 <Grid xs={6}>
                   <div>Author</div>
                 </Grid>
                 <Grid xs={6}>
-                  <div>Devril</div>
+                  <div>{data?.author}</div>
                 </Grid>
               </Grid>
             </div>
