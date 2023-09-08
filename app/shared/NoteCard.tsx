@@ -3,16 +3,13 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Link from "next/link";
 
 export const NoteCard = (props: any) => {
-  const [thumbnail, setThumbnail] = useState();
-
   return (
-    <Card sx={{ display: "flex", width: "400px" }}>
+    <Card sx={{ display: "flex", width: "90%" }}>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <CardContent sx={{ flex: "1 0 auto" }}>
           <Typography component="p">{props.note.title}</Typography>

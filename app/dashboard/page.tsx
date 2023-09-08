@@ -6,21 +6,31 @@ import axios from "axios";
 import DownloadingIcon from "@mui/icons-material/Downloading";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import NoteContainer from "../shared/NoteContainer";
 
 const getDownloadCount = async (ownerId: string = "") => {
   const res = await axios.get(`http://localhost:8080/notes/owner/${ownerId}`);
   return res.data;
 };
-
+const getAllNotes = async (ownerId: string = "") => {
+  const res = await axios.get(
+    `http://localhost:8080/notes?size=30&sort=id,asec&ownerId=${ownerId}`
+  );
+  return res.data;
+};
 export default function Page() {
   const { data: session }: any = useSession();
   const [downloadCount, setDownloadCount] = useState<null | any>(0);
+  const [data, setNoteData] = useState<null | any>(null);
 
   useEffect(() => {
     if (session) {
       getDownloadCount(session?.user?.uid).then((result) => {
         console.log(result);
         setDownloadCount(result);
+      });
+      getAllNotes(session?.user?.uid).then((res) => {
+        setNoteData(res);
       });
     }
   }, [session]);
@@ -39,7 +49,10 @@ export default function Page() {
             {session ? `${JSON.stringify(downloadCount)} Downloads` : "Loading"}
           </span>
         </div>
-        <div className="dashboard-upload-cards-container my-upload-list"></div>
+      </div>
+      <div className="myNotes-list">
+        <h1>My Uploaded Notes</h1>
+        <NoteContainer {...data} />
       </div>
     </div>
   );
