@@ -8,13 +8,14 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import NoteContainer from "../shared/NoteContainer";
 
+const PAGE_SIZE = 10;
 const getDownloadCount = async (ownerId: string = "") => {
   const res = await axios.get(`http://localhost:8080/notes/owner/${ownerId}`);
   return res.data;
 };
 const getAllNotes = async (ownerId: string = "") => {
   const res = await axios.get(
-    `http://localhost:8080/notes?size=30&sort=id,asec&ownerId=${ownerId}`
+    `http://localhost:8080/notes?size=${PAGE_SIZE}&sort=id,asec&ownerId=${ownerId}`
   );
   return res.data;
 };
@@ -52,7 +53,7 @@ export default function Page() {
       </div>
       <div className="myNotes-list">
         <h1>My Uploaded Notes</h1>
-        <NoteContainer {...data} />
+        <NoteContainer {...data} ownerId={session?.user?.uid} />
       </div>
     </div>
   );
