@@ -10,6 +10,7 @@ import "./style.css";
 import { useSession } from "next-auth/react";
 import Modal from "@mui/material/Modal";
 import StepperModal from "./StepperModal";
+import Loader from "./Loader";
 
 export const UploadButton = () => {
   const [file, setFile] = useState<any>(null);
@@ -133,13 +134,17 @@ export const UploadButton = () => {
             pb: 3,
           }}
         >
-          <StepperModal
-            file={file}
-            setFile={setFile}
-            data={data}
-            setData={setData}
-            uploadFile={uploadFile}
-          />
+          {uploading ? (
+            <Loader open={uploading} />
+          ) : (
+            <StepperModal
+              file={file}
+              setFile={setFile}
+              data={data}
+              setData={setData}
+              uploadFile={uploadFile}
+            />
+          )}
 
           <div className="dashboard-upload-cards-container upload-button">
             {/* {uploading && (
