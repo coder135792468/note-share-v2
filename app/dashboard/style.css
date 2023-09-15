@@ -1,18 +1,3 @@
-.dashboard-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
-}
-.dashboard-upload-cards-container {
-  color: white;
-  border-radius: 8px;
-  overflow: hidden;
-  margin: 20px;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  -webkit-user-select: none;
-  user-select: none;
-  display: inline-block;
-}
 .file-upload-button {
   width: 100%;
   height: 10%;

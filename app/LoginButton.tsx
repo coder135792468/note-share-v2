@@ -1,6 +1,7 @@
 "use client";
 import {
   Avatar,
+  Box,
   Button,
   Divider,
   IconButton,
@@ -22,7 +23,11 @@ const LoginButton = () => {
   };
   if (session === undefined) return null;
   return (
-    <span className="ml-auto flex gap-2">
+    <Box
+      sx={{
+        display: "inline-block",
+      }}
+    >
       {session?.user ? (
         <>
           <Tooltip title="Account settings">
@@ -47,33 +52,6 @@ const LoginButton = () => {
             open={open}
             onClose={() => setAnchorEl(null)}
             onClick={() => setAnchorEl(null)}
-            PaperProps={{
-              elevation: 0,
-              sx: {
-                overflow: "visible",
-                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                mt: 1.5,
-                padding: "10px 20px",
-                "& .MuiAvatar-root": {
-                  width: 32,
-                  height: 32,
-                  ml: -0.5,
-                  mr: 1,
-                },
-                "&:before": {
-                  content: '""',
-                  display: "block",
-                  position: "absolute",
-                  top: 0,
-                  right: 14,
-                  width: 10,
-                  height: 10,
-                  bgcolor: "background.paper",
-                  transform: "translateY(-50%) rotate(45deg)",
-                  zIndex: 0,
-                },
-              },
-            }}
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
@@ -89,28 +67,21 @@ const LoginButton = () => {
         </>
       ) : (
         <Button
-          variant="outlined"
-          fullWidth
           onClick={() => {
             signIn("google", {
               redirect: true,
               callbackUrl: "/",
             });
           }}
-          style={{
-            marginTop: "5px",
-            background: "lightgray",
-            color: "#000",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          variant="contained"
+          color="secondary"
+          sx={{ margin: "5px", background: "green" }}
         >
-          Sign In With google
+          Sign In
           <FcGoogle className="ml-3" />
         </Button>
       )}
-    </span>
+    </Box>
   );
 };
 

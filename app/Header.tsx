@@ -1,31 +1,46 @@
 "use client";
 import React, { useState } from "react";
 import LoginButton from "./LoginButton";
-import { AppBar, Toolbar, Typography, Button, Input } from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, Input, Box } from "@mui/material";
 import Link from "next/link";
 
 const Header = () => {
   const [text, setText] = useState(null);
   return (
-    <AppBar position="sticky" color="primary" elevation={0}>
+    <AppBar
+      position="sticky"
+      color="primary"
+      elevation={0}
+      sx={{ paddingBottom: "5px" }}
+    >
       <Toolbar sx={{ flexWrap: "wrap" }}>
-        <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+        <Typography
+          variant="h6"
+          color="inherit"
+          noWrap
+          sx={{ flexGrow: 1, whiteSpace: "nowrap" }}
+        >
           <Link href="/" style={{ textDecoration: "none", color: "white" }}>
             Note Share
           </Link>
+          <LoginButton />
         </Typography>
-        <div style={{ marginRight: "20px" }}>
+        <Box>
           <Input
             placeholder="Search for notes...."
             type="search"
             value={text}
             onChange={(e: any) => setText(e.target.value)}
-            style={{
+            sx={{
               background: "#fff",
               padding: "2px 20px",
               marginRight: "5px",
               position: "relative",
               top: "2px",
+              width: {
+                xs: "60%",
+                sm: "auto",
+              },
             }}
           />
           <Link
@@ -38,8 +53,7 @@ const Header = () => {
               Search
             </Button>
           </Link>
-        </div>
-        <LoginButton />
+        </Box>
       </Toolbar>
     </AppBar>
   );

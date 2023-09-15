@@ -7,7 +7,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
 
-const PAGE_SIZE = 1;
+const PAGE_SIZE = 3;
 const getNotes = async (page: number = 0, ownerId: any = null) => {
   if (ownerId) {
     const res = await axios.get(

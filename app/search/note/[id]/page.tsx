@@ -1,7 +1,6 @@
 import { Footer } from "@/app/Footer";
 import Header from "@/app/Header";
-import "./style.css";
-import { Typography, Button, Divider } from "@mui/material";
+import { Typography, Button, Divider, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import axios from "axios";
 
@@ -9,26 +8,44 @@ const getNoteData = async (id: string = "") => {
   const res = await axios.get(`http://localhost:8080/notes/${id}`);
   return res.data;
 };
+
+const noteReviewStyle = {
+  height: {
+    xs: "300px",
+    sm: "500px",
+  },
+};
 export default async function NotePage({ params: { id } }: any) {
   const data = await getNoteData(id);
   console.log(data);
   return (
-    <div>
+    <Box>
       <Header />
-      <div className="note-review-info">
-        <div
-          className="note-review-section"
-          style={{ background: "rgba(0,0,0,.2)" }}
-        >
+      <Box
+        sx={{
+          minHeight: {
+            xs: "30vh",
+            sm: "60vh",
+          },
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "1fr",
+            sm: "1.5fr 1fr",
+          },
+          gridGap: "10px",
+          margin: "20px 5px",
+        }}
+      >
+        <Box sx={noteReviewStyle} style={{ background: "rgba(0,0,0,.2)" }}>
           <iframe style={{ width: "100%", height: "100%" }} src={data?.file} />
-        </div>
-        <div className="note-review-section">
-          <div className="note-review-section-header">
+        </Box>
+        <Box sx={noteReviewStyle}>
+          <Box>
             <strong>Notes Details</strong>
             {/* Specification */}
-            <div style={{ paddingBottom: 10 }}>
+            <Box style={{ paddingBottom: 10 }}>
               <Typography
-                component="div"
+                component="p"
                 style={{ background: "blue", color: "#fff", padding: "5px" }}
               >
                 Specification
@@ -40,42 +57,42 @@ export default async function NotePage({ params: { id } }: any) {
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
               >
                 <Grid xs={6}>
-                  <div>Course</div>
+                  <Box>Course</Box>
                 </Grid>
                 <Grid xs={6}>
-                  <div>{data?.qualification}</div>
+                  <Box>{data?.qualification}</Box>
                 </Grid>
                 <Grid xs={6}>
-                  <div>Subject</div>
+                  <Box>Subject</Box>
                 </Grid>
                 <Grid xs={6}>
-                  <div>{data?.subject}</div>
+                  <Box>{data?.subject}</Box>
                 </Grid>
               </Grid>
-            </div>
+            </Box>
             <Divider />
             {/* Note Deatils */}
-            <div style={{ paddingBottom: 10 }}>
+            <Box style={{ paddingBottom: 10 }}>
               <Grid
                 container
                 rowSpacing={1}
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
               >
                 <Grid xs={6}>
-                  <div>Course Code</div>
+                  <Box>Course Code</Box>
                 </Grid>
                 <Grid xs={6}>
-                  <div>{data?.title}</div>
+                  <Box>{data?.title}</Box>
                 </Grid>
 
                 <Grid xs={6}>
-                  <div>Author</div>
+                  <Box>Author</Box>
                 </Grid>
                 <Grid xs={6}>
-                  <div>{data?.author}</div>
+                  <Box>{data?.author}</Box>
                 </Grid>
               </Grid>
-            </div>
+            </Box>
             <Divider />
 
             <Button
@@ -85,10 +102,10 @@ export default async function NotePage({ params: { id } }: any) {
             >
               Download Note
             </Button>
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </Box>
       <Footer />
-    </div>
+    </Box>
   );
 }

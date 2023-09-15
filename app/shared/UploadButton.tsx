@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Button, IconButton, Input, TextField } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import {
   storage,
   ref,
   uploadBytesResumable,
   getDownloadURL,
 } from "@/app/firebase";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
 import "./style.css";
-import CloseIcon from "@mui/icons-material/Close";
 import { useSession } from "next-auth/react";
+import Modal from "@mui/material/Modal";
+import StepperModal from "./StepperModal";
 
 export const UploadButton = () => {
   const [file, setFile] = useState<any>(null);
@@ -78,14 +78,16 @@ export const UploadButton = () => {
 
   return (
     <div>
-      <div
-        className="dashboard-upload-cards-container"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100px",
-          background: "lightgrey",
+      <Box
+        sx={{
+          padding: "50px",
+          backgroundColor: "grey",
+          display: "inline-block",
+          margin: "20px",
+          borderRadius: "5px",
+          backgroundImage:
+            "radial-gradient( circle farthest-corner at 10% 20%,  rgba(249,232,51,1) 0%, rgba(250,196,59,1) 100.2% )",
+          boxShadow: "0px 2px 2px rgba(0,0,0,0.4)",
         }}
       >
         <Button
@@ -108,33 +110,39 @@ export const UploadButton = () => {
         >
           Upload A File
         </Button>
-      </div>
-      {modal && (
-        <div className="dashboard-modal">
-          <div className="dashboard-modal-header">
-            <span>Upload Your Notes</span>
-            <IconButton onClick={(e) => setModal(false)}>
-              <CloseIcon />
-            </IconButton>
-          </div>
-          <div className="dashboard-upload-cards-container upload-button">
-            <input
-              onChange={(e: any) => setFile(e.target.files[0])}
-              type="file"
-              id="file-input"
-              accept="application/pdf"
-              hidden
-            />
-            <label htmlFor="file-input" className="file-upload-button">
-              <FileUploadIcon />
-              {file?.name ? (
-                <span>{file.name}</span>
-              ) : (
-                <span>Choose File to Upload</span>
-              )}
-            </label>
+      </Box>
+      <Modal
+        open={modal}
+        onClose={() => {
+          setModal(false);
+        }}
+        aria-labelledby="child-modal-title"
+        aria-describedby="child-modal-description"
+      >
+        <Box
+          sx={{
+            position: "absolute" as "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            bgcolor: "background.paper",
+            border: "2px solid #000",
+            boxShadow: 24,
+            pt: 2,
+            px: 4,
+            pb: 3,
+          }}
+        >
+          <StepperModal
+            file={file}
+            setFile={setFile}
+            data={data}
+            setData={setData}
+            uploadFile={uploadFile}
+          />
 
-            {uploading && (
+          <div className="dashboard-upload-cards-container upload-button">
+            {/* {uploading && (
               <div>
                 <div style={{ color: "#000", textAlign: "center" }}>
                   {progress}%
@@ -145,81 +153,10 @@ export const UploadButton = () => {
                   style={{ width: "100%" }}
                 />
               </div>
-            )}
-            <div className="upload-form-container">
-              <Input
-                onChange={(e: any) => {
-                  setData({
-                    ...data,
-                    title: e.target.value,
-                  });
-                }}
-                className="upload-form-input"
-                placeholder="Enter title"
-              />
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  width: "80vw",
-                  maxWidth: "600px",
-                }}
-              >
-                <div className="upload-button-select-subject">
-                  <select
-                    onChange={(e: any) => {
-                      setData({
-                        ...data,
-                        subject: e.target.value,
-                      });
-                    }}
-                  >
-                    <option selected>Select Subject</option>
-                    <option value="Math">Math</option>
-                    <option value="Science">Science</option>
-                    <option value="English">English</option>
-                  </select>
-                </div>
-                <div className="upload-button-select-subject">
-                  <select
-                    onChange={(e: any) => {
-                      setData({
-                        ...data,
-                        qualification: e.target.value,
-                      });
-                    }}
-                  >
-                    <option selected>Select Grade</option>
-                    <option value="10th">10th</option>
-                    <option value="11th">11th</option>
-                  </select>
-                </div>
-              </div>
-              <TextField
-                className="upload-form-input"
-                multiline={true}
-                variant="filled"
-                onChange={(e: any) => {
-                  setData({ ...data, desc: e.target.value });
-                }}
-                placeholder="Enter Note description...."
-                style={{ height: "auto", marginTop: "5px" }}
-              />
-            </div>
-
-            <Button
-              style={{ marginTop: "30px" }}
-              variant="contained"
-              color="primary"
-              disabled={uploading}
-              onClick={uploadFile}
-              fullWidth
-            >
-              Upload
-            </Button>
+            )} */}
           </div>
-        </div>
-      )}
+        </Box>
+      </Modal>
     </div>
   );
 };
