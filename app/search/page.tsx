@@ -1,12 +1,10 @@
 import Header from "../Header";
 import { Footer } from "../Footer";
-import "./style.css";
-import { FormControlLabel, Grid } from "@mui/material";
-import { MyCheckBox } from "../shared/MyCheckBox";
+import { Box } from "@mui/material";
 import NoteContainer from "../shared/NoteContainer";
 import axios from "axios";
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 3;
 
 const getAllNotes = async (search: string = "") => {
   const res = await axios.get(
@@ -18,12 +16,12 @@ export default async function Search({ searchParams: { search } }: any) {
   const data = await getAllNotes(search);
   console.log(data);
   return (
-    <div>
+    <Box>
       <Header />
-      <div className="search-header-field">
+      <Box sx={{ minHeight: "50vh", paddingBottom: "30px" }}>
         <NoteContainer {...data} />
-      </div>
+      </Box>
       <Footer />
-    </div>
+    </Box>
   );
 }

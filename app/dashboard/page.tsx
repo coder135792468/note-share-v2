@@ -7,8 +7,9 @@ import DownloadingIcon from "@mui/icons-material/Downloading";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import NoteContainer from "../shared/NoteContainer";
+import { Box, Chip } from "@mui/material";
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 3;
 const getDownloadCount = async (ownerId: string = "") => {
   const res = await axios.get(`http://localhost:8080/notes/owner/${ownerId}`);
   return res.data;
@@ -38,23 +39,47 @@ export default function Page() {
   if (session === undefined) return null;
 
   return (
-    <div>
+    <Box>
       <Header />
-      <div className="dashboard-container">
+      <Box>
         <UploadButton />
-        <div className="dashboard-upload-cards-container download-count">
-          <div style={{ marginTop: "20px" }}>
+      </Box>
+
+      {/* <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr 2fr" }}>
+        <UploadButton />
+        <Box
+          sx={{
+            color: "white",
+            "border-radius": "8px",
+            overflow: "hidden",
+            margin: "20px",
+            "box-shadow": "0 3px 3px rgba(0, 0, 0, 0.2)",
+            padding: "20px",
+            "-webkit-user-select": "none",
+            "user-select": "none",
+            display: "inline-block",
+          }}
+        >
+          <Box style={{ marginTop: "20px" }}>
             <DownloadingIcon style={{ fontSize: "50px" }} />
-          </div>
+          </Box>
           <span>
-            {session ? `${JSON.stringify(downloadCount)} Downloads` : "Loading"}
+            
           </span>
-        </div>
-      </div>
-      <div className="myNotes-list">
-        <h1>My Uploaded Notes</h1>
+        </Box>
+      </Box> */}
+      <Box className="myNotes-list">
+        <h1>
+          My Uploaded Notes{" "}
+          <Chip
+            color="secondary"
+            label={
+              session ? `${JSON.stringify(downloadCount)} Downloads` : "Loading"
+            }
+          />
+        </h1>
         <NoteContainer {...data} ownerId={session?.user?.uid} />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

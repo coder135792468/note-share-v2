@@ -3,44 +3,16 @@
   margin: 0;
   padding: 0;
 }
-
-.learning_steps_home_section {
-  display: flex;
-  justify-content: space-evenly;
-  /* width: 90%;
-  margin-left:10%; */
+body {
+  width: 100%;
 }
-.learning_steps_home_section .section {
-  width: 33vw;
-  margin: 20px 5vw;
+body::-webkit-scrollbar {
+  display: none;
 }
-
 .footer-container {
   height: 300px;
   background-color: rgb(64, 62, 62);
 }
 .home-typewritter-text {
-  font-family: "Alumni Sans", sans-serif;
-  font-size: 3em;
-  width: 100%;
-  height: 100%;
-  color: aliceblue;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(2.2px);
-  -webkit-backdrop-filter: blur(2.2px);
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-user-drag: none;
-}
-
-.landing-poster-container {
-  position: relative;
+  font-family: sans-serif;
 }
