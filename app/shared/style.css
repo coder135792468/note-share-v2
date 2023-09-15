@@ -1,3 +1,18 @@
+.upload-button {
+  background-color: azure;
+  padding: 10px;
+  width: 90vw;
+  max-width: 600px;
+}
+.upload-form-container {
+  margin-top: 10px;
+}
+.upload-form-input {
+  width: 80vw;
+  max-width: 550px;
+  height: 30px;
+}
+
 select {
   appearance: none;
   outline: 10px red;
