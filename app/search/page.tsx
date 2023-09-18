@@ -3,8 +3,7 @@ import { Footer } from "../Footer";
 import { Box } from "@mui/material";
 import NoteContainer from "../shared/NoteContainer";
 import axios from "axios";
-
-const PAGE_SIZE = 3;
+import { PAGE_SIZE } from "../contant";
 
 const getAllNotes = async (search: string = "") => {
   const res = await axios.get(

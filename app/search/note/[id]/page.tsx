@@ -1,5 +1,6 @@
 import { Footer } from "@/app/Footer";
 import Header from "@/app/Header";
+import { SaveButton } from "@/app/shared/SaveButton";
 import { Typography, Button, Divider, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import axios from "axios";
@@ -100,8 +101,9 @@ export default async function NotePage({ params: { id } }: any) {
               variant="contained"
               style={{ margin: "10px" }}
             >
-              Download Note
+              Download
             </Button>
+            <SaveButton noteId={id} />
           </Box>
         </Box>
       </Box>

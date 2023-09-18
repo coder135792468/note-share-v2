@@ -9,7 +9,7 @@ type ActionType = {
 };
 
 const initialState: StateType = {
-  notes: [],
+  library: [],
 };
 
 const reducer = (state: StateType, action: ActionType) => {

@@ -6,8 +6,8 @@ import "./style.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
+import { PAGE_SIZE } from "../contant";
 
-const PAGE_SIZE = 3;
 const getNotes = async (page: number = 0, ownerId: any = null) => {
   if (ownerId) {
     const res = await axios.get(
@@ -24,6 +24,7 @@ const getNotes = async (page: number = 0, ownerId: any = null) => {
 
 export default function NoteContainer(props: any) {
   const [notes, setNotes] = useState<null | any>(null);
+
   useEffect(() => {
     setNotes(props);
   }, [props]);
