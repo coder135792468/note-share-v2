@@ -6,11 +6,11 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "@/app/firebase";
-import "./style.css";
+import "../shared/style.css";
 import { useSession } from "next-auth/react";
 import Modal from "@mui/material/Modal";
-import StepperModal from "./StepperModal";
-import Loader from "./Loader";
+import StepperModal from "../shared/StepperModal";
+import Loader from "../shared/Loader";
 
 export const UploadButton = () => {
   const [file, setFile] = useState<any>(null);
@@ -78,16 +78,28 @@ export const UploadButton = () => {
   }, [session]);
 
   return (
-    <div>
+    <>
       <Box
         sx={{
           padding: "50px",
-          backgroundColor: "grey",
-          display: "inline-block",
+          width: {
+            xs: "50%",
+            sm: "auto",
+          },
+          backgroundColor: "#fd746c",
+          display: {
+            xs: "flex",
+            sm: "inline-block",
+          },
+          justifyContent: "center",
+          alignItems: "center",
+          marginLeft: {
+            xs: "10%",
+            sm: "20px",
+          },
           margin: "20px",
           borderRadius: "5px",
-          backgroundImage:
-            "radial-gradient( circle farthest-corner at 10% 20%,  rgba(249,232,51,1) 0%, rgba(250,196,59,1) 100.2% )",
+          backgroundImage: " linear-gradient(to right, #fd746c, #ff9068)",
           boxShadow: "0px 2px 2px rgba(0,0,0,0.4)",
         }}
       >
@@ -162,6 +174,6 @@ export const UploadButton = () => {
           </div>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 };
