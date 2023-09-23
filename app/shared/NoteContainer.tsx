@@ -7,9 +7,19 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
 import { PAGE_SIZE } from "../contant";
-
-const getNotes = async (page: number = 0, ownerId: any = null) => {
-  if (ownerId) {
+import no_record from "@/assets/images/2953962.jpg";
+import Image from "next/image";
+const getNotes = async (
+  page: number = 0,
+  ownerId: any = null,
+  isLibrary: boolean = false
+) => {
+  if (isLibrary) {
+    const res = await axios.get(
+      `http://localhost:8080/library/${ownerId}?size=${PAGE_SIZE}&page=${page}&sort=id,asec`
+    );
+    return res.data;
+  } else if (ownerId) {
     const res = await axios.get(
       `http://localhost:8080/notes?size=${PAGE_SIZE}&page=${page}&sort=id,asec&ownerId=${ownerId}`
     );
@@ -28,8 +38,23 @@ export default function NoteContainer(props: any) {
   useEffect(() => {
     setNotes(props);
   }, [props]);
+
   return (
     <>
+      {notes?.notes?.length === 0 && (
+        <center>
+          <Image
+            src={no_record}
+            alt="no-record"
+            style={{
+              width: "100%",
+              height: "80%",
+              maxWidth: "450px",
+              objectFit: "contain",
+            }}
+          />
+        </center>
+      )}
       <Grid
         className="search-header-notes-card"
         container
@@ -38,7 +63,7 @@ export default function NoteContainer(props: any) {
       >
         {notes?.notes?.map((note: any, index: number) => (
           <Grid item xs={2} sm={2} md={4} key={index}>
-            <NoteCard note={note} />
+            <NoteCard note={note} isLibrary={props.isLibrary} />
           </Grid>
         ))}
       </Grid>
@@ -55,7 +80,19 @@ export default function NoteContainer(props: any) {
             <Pagination
               count={notes?.totalPages}
               onChange={async (e: any, page: number) => {
-                const data = await getNotes(page - 1, props?.ownerId);
+                console.log(page);
+                let data = await getNotes(
+                  page - 1,
+                  props?.ownerId,
+                  props?.isLibrary
+                );
+                if (props?.isLibrary) {
+                  data?.notes?.forEach((ele: any) => {
+                    ele = ele?.note;
+                  });
+                  // @ts-ignore
+                  data.notes = data?.notes?.map((ele: any) => ele.note);
+                }
                 setNotes(data);
               }}
             />
