@@ -27,11 +27,13 @@ export const LibraryButton = () => {
       getAllNotes(session?.user?.uid).then((res) => {
         let new_data = res;
         new_data?.notes?.forEach((ele: any) => {
+          let temp = ele;
           ele = ele?.note;
+          ele.libraryId = temp?.id;
         });
-        console.log(new_data?.notes);
         // @ts-ignore
         new_data.notes = new_data?.notes?.map((ele: any) => ele.note);
+        console.log(new_data);
         setNoteData(new_data);
       });
     } catch (err) {
@@ -93,10 +95,17 @@ export const LibraryButton = () => {
             background: "#fff",
             margin: "10vh auto",
             borderRadius: "5px",
+            overflow: "auto",
           }}
         >
           <Loader open={loading} />
-          {!loading && <NoteContainer {...data} ownerId={session?.user?.uid} />}
+          {!loading && (
+            <NoteContainer
+              {...data}
+              ownerId={session?.user?.uid}
+              isLibrary={true}
+            />
+          )}
         </Box>
       </Modal>
     </>
