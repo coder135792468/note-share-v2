@@ -3,6 +3,7 @@ import { Button } from "@mui/material";
 import React from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import BookmarksIcon from "@mui/icons-material/Bookmarks";
 
 export const SaveButton = ({ noteId }: any) => {
   const { data: session }: any = useSession();
@@ -24,7 +25,8 @@ export const SaveButton = ({ noteId }: any) => {
       variant="contained"
       style={{ margin: "10px" }}
     >
-      Save
+      <BookmarksIcon />
+      Save Note
     </Button>
   );
 };

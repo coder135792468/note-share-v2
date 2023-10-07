@@ -1,9 +1,10 @@
 "use client";
-import Header from "@/app/Header";
+import Header from "./Header";
 import { Footer } from "./Footer";
 import "./globals.css";
 import { Typewriter } from "react-simple-typewriter";
 import { Box, Typography } from "@mui/material";
+import LandingBanner from "./layout/LandingBanner";
 
 const cardStyle = {
   width: {
@@ -23,68 +24,19 @@ const cardStyle = {
   },
 };
 
+const backgroundImage = "https://docmerit.com/images/home.webp";
 export default function Home(props: any) {
   return (
     <Box>
       <Header />
-      <Box sx={{ position: "relative" }}>
-        <img
-          src={"https://docmerit.com/images/home.webp"}
-          alt={""}
-          width="100%"
-          height={"90%"}
-        />
-        <Typography
-          component="h1"
-          sx={{
-            width: "100%",
-            height: "100%",
-            color: "aliceblue",
-            "text-align": "center",
-            background: "rgba(255, 255, 255, 0.12)",
-            boxShadow: " 0 4px 30px rgba(0, 0, 0, 0.1)",
-            backdropFilter: " blur(2.2px)",
-            "-webkit-backdrop-filter": "blur(2.2px)",
-            position: " absolute",
-            top: "0",
-            left: "0",
-            display: "flex",
-            justifyContent: "center",
-            alignTtems: "center",
-            "user-select": "none",
-            "-webkit-user-select": "none",
-            "-webkit-user-drag": "none",
-          }}
-        >
-          <Typography
-            component="p"
-            sx={{
-              width: "90%",
-              fontSize: {
-                xs: "1em",
-                sm: "1.5em",
-              },
-              marginTop: {
-                xs: 0,
-                sm: "50px",
-              },
-            }}
-          >
-            <Typewriter
-              words={[
-                "There is no end to education. It is not that you read a book, pass an examination, and finish with education. ",
-                "The whole of life, from the moment you are born to the moment you die, is a process of learning.",
-              ]}
-              cursorBlinking={true}
-              cursor={true}
-              loop={false}
-              delaySpeed={2000}
-              typeSpeed={100}
-              deleteSpeed={200}
-            />
-          </Typography>
-        </Typography>
-      </Box>
+      <LandingBanner
+        sxBackground={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundColor: "#7fc7d9",
+          backgroundPosition: "center",
+        }}
+      />
+
       <Box
         sx={{
           display: "flex",

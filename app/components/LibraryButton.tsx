@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography, alpha } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Modal from "@mui/material/Modal";
 import Loader from "../shared/Loader";
@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import axios from "axios";
 import { PAGE_SIZE } from "../contant";
 import NoteContainer from "../shared/NoteContainer";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 
 const getAllNotes = async (ownerId: string = "") => {
   const res = await axios.get(
@@ -46,7 +47,7 @@ export const LibraryButton = () => {
     <>
       <Box
         sx={{
-          padding: "50px",
+          padding: "30px",
           width: {
             xs: "50%",
             sm: "auto",
@@ -57,27 +58,29 @@ export const LibraryButton = () => {
           },
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#6190e8",
           marginLeft: {
             xs: "10%",
             sm: "20px",
           },
           margin: "20px",
           borderRadius: "5px",
-          backgroundImage: "linear-gradient(to right, #6190e8, #a7bfe8)",
-          boxShadow: "0px 2px 2px rgba(0,0,0,0.4)",
+          border: "1px solid #999",
+          boxShadow: `0 0 12px 0 ${alpha(
+            "#919EAB",
+            0.2
+          )}, 0 12px 24px -4px ${alpha("#919EAB", 0.12)}`,
+        }}
+        onClick={(e) => {
+          setModal(true);
+          getLibrary();
         }}
       >
-        <Button
-          variant="contained"
-          color="warning"
-          onClick={(e) => {
-            setModal(true);
-            getLibrary();
-          }}
-        >
+        <Box sx={{ color: "secondary.main", textAlign: "center" }}>
+          <LibraryBooksIcon />
+        </Box>
+        <Typography sx={{ opacity: 0.72, fontWeight: 700 }}>
           Show Library
-        </Button>
+        </Typography>
       </Box>
 
       <Modal
