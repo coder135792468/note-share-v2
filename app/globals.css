@@ -11,7 +11,8 @@ body::-webkit-scrollbar {
 }
 .footer-container {
   height: 300px;
-  background-color: rgb(64, 62, 62);
+  background-color: azure;
+  color: black;
 }
 .home-typewritter-text {
   font-family: sans-serif;

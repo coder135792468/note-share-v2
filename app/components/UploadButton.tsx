@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Card, Typography } from "@mui/material";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import {
   storage,
   ref,
@@ -11,6 +12,7 @@ import { useSession } from "next-auth/react";
 import Modal from "@mui/material/Modal";
 import StepperModal from "../shared/StepperModal";
 import Loader from "../shared/Loader";
+import { alpha } from "@mui/material/styles";
 
 export const UploadButton = () => {
   const [file, setFile] = useState<any>(null);
@@ -81,12 +83,12 @@ export const UploadButton = () => {
     <>
       <Box
         sx={{
-          padding: "50px",
+          padding: "30px",
           width: {
             xs: "50%",
             sm: "auto",
           },
-          backgroundColor: "#fd746c",
+          backgroundColor: "#D0F2FF",
           display: {
             xs: "flex",
             sm: "inline-block",
@@ -99,31 +101,36 @@ export const UploadButton = () => {
           },
           margin: "20px",
           borderRadius: "5px",
-          backgroundImage: " linear-gradient(to right, #fd746c, #ff9068)",
-          boxShadow: "0px 2px 2px rgba(0,0,0,0.4)",
+          border: "1px solid #999",
+          boxShadow: `0 0 12px 0 ${alpha(
+            "#919EAB",
+            0.2
+          )}, 0 12px 24px -4px ${alpha("#919EAB", 0.12)}`,
+        }}
+        onClick={(e) => {
+          setModal(true);
+          setUploading(false);
+          setData({
+            uid: "",
+            title: "",
+            desc: "",
+            subject: "",
+            qualification: "",
+            author: "",
+            file: "",
+          });
+          setFile(null);
+          setProgress(0);
         }}
       >
-        <Button
-          variant="contained"
-          onClick={(e) => {
-            setModal(true);
-            setUploading(false);
-            setData({
-              uid: "",
-              title: "",
-              desc: "",
-              subject: "",
-              qualification: "",
-              author: "",
-              file: "",
-            });
-            setFile(null);
-            setProgress(0);
-          }}
-        >
-          Upload A File
-        </Button>
+        <Box sx={{ color: "secondary.main", textAlign: "center" }}>
+          <CloudUploadIcon />
+        </Box>
+        <Typography sx={{ opacity: 0.72, fontWeight: 700 }}>
+          Upload your file
+        </Typography>
       </Box>
+
       <Modal
         open={modal}
         onClose={() => {

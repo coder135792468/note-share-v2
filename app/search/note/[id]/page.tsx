@@ -1,7 +1,8 @@
 import { Footer } from "@/app/Footer";
 import Header from "@/app/Header";
+import { DownloadButton } from "@/app/layout/DownloadButton";
 import { SaveButton } from "@/app/shared/SaveButton";
-import { Typography, Button, Divider, Box } from "@mui/material";
+import { Typography, Button, Divider, Box, Chip } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import axios from "axios";
 
@@ -13,7 +14,7 @@ const getNoteData = async (id: string = "") => {
 const noteReviewStyle = {
   height: {
     xs: "300px",
-    sm: "500px",
+    sm: "auto",
   },
 };
 export default async function NotePage({ params: { id } }: any) {
@@ -37,34 +38,67 @@ export default async function NotePage({ params: { id } }: any) {
           margin: "20px 5px",
         }}
       >
-        <Box sx={noteReviewStyle} style={{ background: "rgba(0,0,0,.2)" }}>
+        <Box
+          sx={noteReviewStyle}
+          style={{
+            background: "rgba(0,0,0,.2)",
+            boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
+          }}
+        >
           <iframe style={{ width: "100%", height: "100%" }} src={data?.file} />
         </Box>
-        <Box sx={noteReviewStyle}>
+        <Box>
           <Box>
-            <strong>Notes Details</strong>
-            {/* Specification */}
-            <Box style={{ paddingBottom: 10 }}>
-              <Typography
-                component="p"
-                style={{ background: "blue", color: "#fff", padding: "5px" }}
-              >
-                Specification
-              </Typography>
+            <Chip
+              color="info"
+              label={
+                <strong style={{ fontFamily: "sans-serif" }}>
+                  Notes Details
+                </strong>
+              }
+            />
+            <Chip
+              label={
+                data?.download ? `${data.download} Downloads` : "Not Known"
+              }
+            />
 
+            {/* Specification */}
+            <Box
+              style={{
+                padding: 10,
+                margin: "10px 0",
+                border: "2px solid rgba(0,0,0,0.1)",
+                fontFamily: "sans-serif",
+                borderRadius: "5px",
+              }}
+            >
+              <strong>Description: </strong>
+              <span>{data?.desc}</span>
+            </Box>
+            <Box
+              style={{
+                padding: 10,
+                margin: "10px 0",
+                border: "2px solid rgba(0,0,0,0.1)",
+                fontFamily: "sans-serif",
+                borderRadius: "5px",
+                boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
+              }}
+            >
               <Grid
                 container
                 rowSpacing={1}
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
               >
                 <Grid xs={6}>
-                  <Box>Course</Box>
+                  <Box sx={{ fontWeight: 700 }}>Course</Box>
                 </Grid>
                 <Grid xs={6}>
                   <Box>{data?.qualification}</Box>
                 </Grid>
                 <Grid xs={6}>
-                  <Box>Subject</Box>
+                  <Box sx={{ fontWeight: 700 }}>Subject</Box>
                 </Grid>
                 <Grid xs={6}>
                   <Box>{data?.subject}</Box>
@@ -72,22 +106,32 @@ export default async function NotePage({ params: { id } }: any) {
               </Grid>
             </Box>
             <Divider />
+
             {/* Note Deatils */}
-            <Box style={{ paddingBottom: 10 }}>
+            <Box
+              style={{
+                padding: 10,
+                margin: "10px 0",
+                border: "2px solid rgba(0,0,0,0.1)",
+                fontFamily: "sans-serif",
+                borderRadius: "5px",
+                boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
+              }}
+            >
               <Grid
                 container
                 rowSpacing={1}
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
               >
                 <Grid xs={6}>
-                  <Box>Course Code</Box>
+                  <Box sx={{ fontWeight: 700 }}>Course Code</Box>
                 </Grid>
                 <Grid xs={6}>
                   <Box>{data?.title}</Box>
                 </Grid>
 
                 <Grid xs={6}>
-                  <Box>Author</Box>
+                  <Box sx={{ fontWeight: 700 }}>Author</Box>
                 </Grid>
                 <Grid xs={6}>
                   <Box>{data?.author}</Box>
@@ -96,13 +140,7 @@ export default async function NotePage({ params: { id } }: any) {
             </Box>
             <Divider />
 
-            <Button
-              color="success"
-              variant="contained"
-              style={{ margin: "10px" }}
-            >
-              Download
-            </Button>
+            <DownloadButton data={data} />
             <SaveButton noteId={id} />
           </Box>
         </Box>

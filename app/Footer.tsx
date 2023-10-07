@@ -9,7 +9,6 @@ export const Footer = () => {
           position: "relative",
           top: "40px",
           left: "40px",
-          color: "#fff",
           maxWidth: "95%",
         }}
       >
@@ -21,7 +20,6 @@ export const Footer = () => {
             gridGap: "10px",
             fontWeight: 200,
             marginTop: 10,
-            
           }}
         >
           <u>Privacy Policy</u>

@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { NoteCard } from "./NoteCard";
-import { Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import "./style.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
@@ -38,9 +38,10 @@ export default function NoteContainer(props: any) {
   useEffect(() => {
     setNotes(props);
   }, [props]);
-
+  // const {notes:{notes}} = props;
+  console.log({ props });
   return (
-    <>
+    <Container>
       {notes?.notes?.length === 0 && (
         <center>
           <Image
@@ -99,6 +100,6 @@ export default function NoteContainer(props: any) {
           </Stack>
         </div>
       )}
-    </>
+    </Container>
   );
 }
