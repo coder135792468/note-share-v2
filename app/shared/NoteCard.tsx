@@ -27,11 +27,27 @@ export const NoteCard = (props: any) => {
     }
   };
   return (
-    <Card sx={{ display: "flex", width: "90%" }}>
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
+    <Card
+      sx={{
+        display: "flex",
+        width: "90%",
+        boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
+        background: "rgba(0,0,0,0.05)",
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: {
+            sm: "190px",
+            md: "170px",
+          },
+        }}
+      >
         <CardContent sx={{ flex: "1 0 auto" }}>
-          <Typography component="p">
-            {note.title}
+          <Typography component="div">
+            {note.title.substring(0, 100)}
             {isLibrary && (
               <Chip
                 color={isDeleted ? "secondary" : "primary"}
@@ -48,10 +64,10 @@ export const NoteCard = (props: any) => {
           </Typography>
 
           <Typography variant="body2" color="text.secondary">
-            {note.desc}
+            {note.desc.substring(0, 100)}
           </Typography>
           <Typography variant="subtitle1" component="div">
-            {note.author}
+            {note.author.substring(0, 50)}
           </Typography>
         </CardContent>
         <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>

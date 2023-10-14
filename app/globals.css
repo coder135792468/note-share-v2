@@ -13,6 +13,7 @@ body::-webkit-scrollbar {
   height: 300px;
   background-color: azure;
   color: black;
+  margin-top: 20px;
 }
 .home-typewritter-text {
   font-family: sans-serif;

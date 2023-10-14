@@ -19,7 +19,7 @@ import Link from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
 
-const Header = () => {
+const Header = ({ showSearch = true }: any) => {
   const [text, setText] = useState(null);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -63,16 +63,18 @@ const Header = () => {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
+            {showSearch && (
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+            )}
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -142,33 +144,37 @@ const Header = () => {
             Note Share
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Input
-              placeholder="Search for notes...."
-              type="search"
-              value={text}
-              onChange={(e: any) => setText(e.target.value)}
-              sx={{
-                background: "#fff",
-                padding: "2px 20px",
-                marginRight: "5px",
-                position: "relative",
-                top: "2px",
-                width: {
-                  xs: "60%",
-                  sm: "auto",
-                },
-              }}
-            />
-            <Link
-              href={{
-                pathname: "/search",
-                query: text ? { search: text } : null,
-              }}
-            >
-              <Button variant="contained" color="secondary">
-                Search
-              </Button>
-            </Link>
+            {showSearch && (
+              <Input
+                placeholder="Search for notes...."
+                type="search"
+                value={text}
+                onChange={(e: any) => setText(e.target.value)}
+                sx={{
+                  background: "#fff",
+                  padding: "2px 20px",
+                  marginRight: "5px",
+                  position: "relative",
+                  top: "2px",
+                  width: {
+                    xs: "60%",
+                    sm: "auto",
+                  },
+                }}
+              />
+            )}
+            {showSearch && (
+              <Link
+                href={{
+                  pathname: "/search",
+                  query: text ? { search: text } : null,
+                }}
+              >
+                <Button variant="contained" color="secondary">
+                  Search
+                </Button>
+              </Link>
+            )}
           </Box>
           <LoginButton />
         </Toolbar>
