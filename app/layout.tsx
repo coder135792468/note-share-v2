@@ -2,7 +2,6 @@ import ProvidersWrapper from "@/app/ProviderAuthetication.tsx";
 import { NoteState } from "@/context/NoteContext";
 
 import "./globals.css";
-
 export default function RootLayout({
   children,
 }: {

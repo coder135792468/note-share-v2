@@ -4,6 +4,7 @@ import { Box } from "@mui/material";
 import NoteContainer from "../shared/NoteContainer";
 import axios from "axios";
 import { PAGE_SIZE } from "../contant";
+import { NoteSearchBar } from "../components/NoteSearchBar";
 
 const getAllNotes = async (search: string = "") => {
   const res = await axios.get(
@@ -13,10 +14,10 @@ const getAllNotes = async (search: string = "") => {
 };
 export default async function Search({ searchParams: { search } }: any) {
   const data = await getAllNotes(search);
-  console.log(data);
   return (
     <Box>
-      <Header />
+      <Header showSearch={false} />
+      <NoteSearchBar />
       <Box sx={{ minHeight: "50vh", paddingBottom: "30px" }}>
         <NoteContainer {...data} />
       </Box>
