@@ -94,9 +94,14 @@ export const LibraryButton = () => {
         <Box
           sx={{
             width: "80vw",
-            height: "80vh",
+            minHeight: "50vh",
+            maxHeight: "80vh",
             background: "#fff",
-            margin: "10vh auto",
+            p: 2,
+            margin: {
+              xs: "20vh auto",
+              sm: "10vh auto",
+            },
             borderRadius: "5px",
             overflow: "auto",
           }}
