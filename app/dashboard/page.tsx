@@ -3,7 +3,6 @@ import Header from "../Header";
 import { UploadButton } from "../components/UploadButton";
 import "./style.css";
 import axios from "axios";
-import DownloadingIcon from "@mui/icons-material/Downloading";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import NoteContainer from "../shared/NoteContainer";
