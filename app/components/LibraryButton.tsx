@@ -4,7 +4,7 @@ import Modal from "@mui/material/Modal";
 import Loader from "../shared/Loader";
 import { useSession } from "next-auth/react";
 import axios from "axios";
-import { PAGE_SIZE } from "../contant";
+import { PAGE_SIZE } from "../../assets/contants/contant";
 import NoteContainer from "../shared/NoteContainer";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 
@@ -95,13 +95,10 @@ export const LibraryButton = () => {
           sx={{
             width: "80vw",
             minHeight: "50vh",
-            maxHeight: "80vh",
+            maxHeight: "60vh",
             background: "#fff",
             p: 2,
-            margin: {
-              xs: "20vh auto",
-              sm: "10vh auto",
-            },
+            margin: "10vh auto",
             borderRadius: "5px",
             overflow: "auto",
           }}

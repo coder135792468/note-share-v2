@@ -2,25 +2,26 @@
 import Header from "./Header";
 import { Footer } from "./Footer";
 import "./globals.css";
-import { Typewriter } from "react-simple-typewriter";
 import { Box, Typography } from "@mui/material";
 import LandingBanner from "./layout/LandingBanner";
+import { StudyMaterial } from "./components/StudyMaterial";
+import { HOW_TO_USE } from "../assets/contants/contant";
 
 const cardStyle = {
   width: {
-    xs: "70vw",
-    sm: "50vw",
-    md: "33vw",
+    xs: "80vw",
+    sm: "40vw",
+    md: "30vw",
   },
+  fontFamily: "sans-serif",
   margin: "20px auto",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
-  padding: "10px",
-  boxShadow: {
-    xs: "-1px 4px 5px 6px rgba(0,0,0,0.09)",
-    sm: "none",
+  padding: "15px",
+  border: {
+    xs: "2px solid #efefef",
   },
 };
 
@@ -41,41 +42,22 @@ export default function Home(props: any) {
         sx={{
           display: "flex",
           justifyContent: "space-evenly",
+          flexWrap: "wrap",
           flexDirection: { xs: "column", sm: "row" },
         }}
       >
-        <Box sx={cardStyle}>
-          <Box>
-            <h4>BROWSE STUDY MATERIALS</h4>
-            <p>
-              Buy lecture notes, summaries and practice exams and get higher
-              grades for your exams.
-            </p>
+        {HOW_TO_USE?.map((ele) => (
+          <Box sx={cardStyle}>
+            {ele?.isTop && <img src={ele.imageLink} />}
+            <Box sx={{ margin: "20px auto" }}>
+              <h4>{ele?.title}</h4>
+              <p>{ele?.desc}</p>
+            </Box>
+            {!ele?.isTop && <img src={ele.imageLink} />}
           </Box>
-          <img src="https://docmerit.com/images/img1.png" />
-        </Box>
-        <Box sx={cardStyle}>
-          <img src="https://docmerit.com/images/img2.png" />
-          <Box>
-            <h4>BROWSE STUDY MATERIALS</h4>
-            <p>
-              Buy lecture notes, summaries and practice exams and get higher
-              grades for your exams.
-            </p>
-          </Box>
-        </Box>
-        <Box sx={cardStyle}>
-          <Box>
-            <h4>BROWSE STUDY MATERIALS</h4>
-            <p>
-              Buy lecture notes, summaries and practice exams and get higher
-              grades for your exams.
-            </p>
-          </Box>
-          <img src="https://docmerit.com/images/img3.png" />
-        </Box>
+        ))}
       </Box>
-
+      <StudyMaterial />
       <Footer />
     </Box>
   );

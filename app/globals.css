@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,900;1,700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -8,13 +7,4 @@ body {
 }
 body::-webkit-scrollbar {
   display: none;
-}
-.footer-container {
-  height: 300px;
-  background-color: azure;
-  color: black;
-  margin-top: 20px;
-}
-.home-typewritter-text {
-  font-family: sans-serif;
 }

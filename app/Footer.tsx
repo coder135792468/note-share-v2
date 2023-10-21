@@ -1,34 +1,62 @@
-"use-client";
-import "./globals.css";
+"use client";
+import { Box, Typography } from "@mui/material";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 export const Footer = () => {
   return (
-    <div className="footer-container">
-      <div
-        style={{
-          position: "relative",
-          top: "40px",
-          left: "40px",
-          maxWidth: "95%",
+    <Box
+      sx={{
+        height: "200px",
+        backgroundColor: "#333",
+        color: "#fff",
+        marginTop: "20px",
+        p: 2,
+      }}
+    >
+      <Typography
+        sx={{
+          fontSize: "1.5rem",
         }}
       >
-        <h2>Welcome to Note-share</h2>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
-            gridGap: "10px",
-            fontWeight: 200,
-            marginTop: 10,
+        Welcome to Note Share
+      </Typography>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "1fr 1fr",
+            sm: "1fr 1fr 1fr",
+          },
+          pt: 2,
+          pl: 2,
+        }}
+      >
+        {[
+          { text: "Privacy Policy", redirect: "privary-policy" },
+          { text: "Terms of Service", redirect: "terms-of-service" },
+          { text: "Study Tips", redirect: "study-tips" },
+          { text: "Team", redirect: "team" },
+        ].map((ele) => (
+          <Typography component={"u"}>{ele?.text}</Typography>
+        ))}
+      </Box>
+      <Box component="p" sx={{ position: "relative", top: "70px" }}>
+        Made By Coder
+        <Box
+          component="a"
+          href="https://github.com/coder135792468"
+          target="_blank"
+          sx={{
+            marginLeft: "10px",
+            position: "relative",
+            top: "5px",
+            textDecoration: "none",
+            color: "aliceblue",
           }}
         >
-          <u>Privacy Policy</u>
-          <u>Study Tips</u>
-          <u>Latest Updates</u>
-          <u>Subscribe to Newsletter</u>
-          <u>Follow Us</u>
-        </div>
-      </div>
-    </div>
+          <GitHubIcon />
+        </Box>
+      </Box>
+    </Box>
   );
 };
