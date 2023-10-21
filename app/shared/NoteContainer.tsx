@@ -6,7 +6,7 @@ import "./style.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
-import { PAGE_SIZE } from "../contant";
+import { PAGE_SIZE } from "../../assets/contants/contant";
 import no_record from "@/assets/images/2953962.jpg";
 import Image from "next/image";
 const getNotes = async (
@@ -75,7 +75,7 @@ export default function NoteContainer(props: any) {
               height: "250px",
               maxWidth: "450px",
               objectFit: "contain",
-              margin: "10% auto",
+              margin: "2% auto",
             }}
           />
         </Box>
@@ -107,15 +107,17 @@ export default function NoteContainer(props: any) {
             bottom: "10px",
           }}
         >
-          <Stack spacing={2} style={{ margin: "20px 40px 0" }}>
-            <Pagination
-              count={notes?.totalPages}
-              onChange={async (e: any, page: number) => {
-                console.log(page);
-                await fetchNotes(page - 1, props.ownerId, props?.isLibrary);
-              }}
-            />
-          </Stack>
+          {notes && (
+            <Stack spacing={2} style={{ margin: "20px 40px 0" }}>
+              <Pagination
+                count={notes?.totalPages}
+                onChange={async (e: any, page: number) => {
+                  console.log(page);
+                  await fetchNotes(page - 1, props.ownerId, props?.isLibrary);
+                }}
+              />
+            </Stack>
+          )}
         </div>
       )}
     </Container>

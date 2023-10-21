@@ -9,7 +9,7 @@ import Link from "next/link";
 import axios from "axios";
 import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
 import { useSession } from "next-auth/react";
-import { PAGE_SIZE } from "../contant";
+import { PAGE_SIZE } from "../../assets/contants/contant";
 import { IconButton, Tooltip } from "@mui/material";
 
 const getAllNotes = async (ownerId: string = "") => {
@@ -52,7 +52,6 @@ export const NoteCard = (props: any) => {
           display: "flex",
           width: "90%",
           boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
-          background: "rgba(0,0,0,0.05)",
         }}
       >
         <Box

@@ -40,7 +40,10 @@ const Header = ({ showSearch = true }: any) => {
   };
 
   return (
-    <AppBar position="static" sx={{ background: "#efefef", color: "#000" }}>
+    <AppBar
+      position={showSearch ? "sticky" : "static"}
+      sx={{ background: "#efefef", color: "#000" }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />

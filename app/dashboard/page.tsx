@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import NoteContainer from "../shared/NoteContainer";
 import { Box, Chip } from "@mui/material";
 import { LibraryButton } from "../components/LibraryButton";
-import { PAGE_SIZE } from "../contant";
+import { PAGE_SIZE } from "../../assets/contants/contant";
 import { Footer } from "../Footer";
 
 const getDownloadCount = async (ownerId: string = "") => {

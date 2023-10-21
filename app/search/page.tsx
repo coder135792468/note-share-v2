@@ -3,7 +3,7 @@ import { Footer } from "../Footer";
 import { Box } from "@mui/material";
 import NoteContainer from "../shared/NoteContainer";
 import axios from "axios";
-import { PAGE_SIZE } from "../contant";
+import { PAGE_SIZE } from "../../assets/contants/contant";
 import { NoteSearchBar } from "../components/NoteSearchBar";
 
 const getAllNotes = async (search: string = "") => {
@@ -15,9 +15,21 @@ const getAllNotes = async (search: string = "") => {
 export default async function Search({ searchParams: { search } }: any) {
   const data = await getAllNotes(search);
   return (
-    <Box>
+    <Box sx={{ background: "rgba(0,0,0,0.03)" }}>
       <Header showSearch={false} />
       <NoteSearchBar />
+      {search && (
+        <Box
+          component={"h1"}
+          sx={{
+            textAlign: "center",
+            fontFamily: "sans-serif",
+            fontWeight: "700",
+          }}
+        >
+          Search Result for "{search}"
+        </Box>
+      )}
       <Box sx={{ minHeight: "50vh", paddingBottom: "30px" }}>
         <NoteContainer {...data} />
       </Box>
