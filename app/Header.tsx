@@ -1,38 +1,26 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import LoginButton from "./LoginButton";
 import {
   AppBar,
   Toolbar,
   Typography,
-  Button,
-  Input,
   Box,
   Container,
   IconButton,
   Menu,
-  MenuItem,
-  Tooltip,
-  Avatar,
 } from "@mui/material";
-import Link from "next/link";
-import MenuIcon from "@mui/icons-material/Menu";
+import LinearScaleIcon from "@mui/icons-material/LinearScale";
 import AdbIcon from "@mui/icons-material/Adb";
+import { NoteSearchBar } from "./components/NoteSearchBar";
 
 const Header = ({ showSearch = true }: any) => {
-  const [text, setText] = useState(null);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
@@ -75,56 +63,20 @@ const Header = ({ showSearch = true }: any) => {
                 onClick={handleOpenNavMenu}
                 color="inherit"
               >
-                <MenuIcon />
+                <LinearScaleIcon />
               </IconButton>
             )}
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
               keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
               }}
             >
-              <Box sx={{ padding: "10px" }}>
-                <Input
-                  placeholder="Search for notes...."
-                  type="search"
-                  value={text}
-                  onChange={(e: any) => setText(e.target.value)}
-                  sx={{
-                    background: "#fff",
-                    padding: "2px 20px",
-                    marginRight: "5px",
-                    position: "relative",
-                    top: "2px",
-                    width: {
-                      xs: "60%",
-                      sm: "auto",
-                    },
-                  }}
-                />
-                <Link
-                  href={{
-                    pathname: "/search",
-                    query: text ? { search: text } : null,
-                  }}
-                >
-                  <Button variant="contained" color="secondary">
-                    Search
-                  </Button>
-                </Link>
-              </Box>
+              <NoteSearchBar />
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -147,37 +99,7 @@ const Header = ({ showSearch = true }: any) => {
             Note Share
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {showSearch && (
-              <Input
-                placeholder="Search for notes...."
-                type="search"
-                value={text}
-                onChange={(e: any) => setText(e.target.value)}
-                sx={{
-                  background: "#fff",
-                  padding: "2px 20px",
-                  marginRight: "5px",
-                  position: "relative",
-                  top: "2px",
-                  width: {
-                    xs: "60%",
-                    sm: "auto",
-                  },
-                }}
-              />
-            )}
-            {showSearch && (
-              <Link
-                href={{
-                  pathname: "/search",
-                  query: text ? { search: text } : null,
-                }}
-              >
-                <Button variant="contained" color="secondary">
-                  Search
-                </Button>
-              </Link>
-            )}
+            {showSearch && <NoteSearchBar />}
           </Box>
           <LoginButton />
         </Toolbar>

@@ -80,24 +80,18 @@ export default function NoteContainer(props: any) {
           />
         </Box>
       )}
-      <Grid
-        className="search-header-notes-card"
-        container
-        spacing={{ xs: 2, md: 2 }}
-        columns={{ xs: 2, sm: 4, md: 8 }}
-      >
+
+      <Box sx={{ display: "flex", flexWrap: "wrap" }}>
         {notes?.notes?.map((note: any, index: number) => (
-          <Grid item xs={2} sm={2} md={4} key={index}>
-            <NoteCard
-              note={note}
-              isLibrary={props.isLibrary}
-              onDelete={props.isLibrary && getNotes}
-              setNotes={setNotes}
-              ownerId={props.ownerId}
-            />
-          </Grid>
+          <NoteCard
+            note={note}
+            isLibrary={props.isLibrary}
+            onDelete={props.isLibrary && getNotes}
+            setNotes={setNotes}
+            ownerId={props.ownerId}
+          />
         ))}
-      </Grid>
+      </Box>
       {notes?.totalPages > 1 && (
         <div
           style={{

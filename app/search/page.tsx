@@ -25,6 +25,7 @@ export default async function Search({ searchParams: { search } }: any) {
             textAlign: "center",
             fontFamily: "sans-serif",
             fontWeight: "700",
+            margin: "10px 0 70px 0",
           }}
         >
           Search Result for "{search}"

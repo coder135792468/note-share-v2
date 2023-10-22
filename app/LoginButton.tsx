@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   Divider,
-  IconButton,
   Menu,
   MenuItem,
   Tooltip,
@@ -13,6 +12,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const LoginButton = () => {
   const { data: session } = useSession();
@@ -31,7 +31,7 @@ const LoginButton = () => {
       {session?.user ? (
         <>
           <Tooltip title="Account settings">
-            <IconButton
+            <Button
               onClick={handleClick}
               size="small"
               sx={{ ml: 2 }}
@@ -43,7 +43,8 @@ const LoginButton = () => {
               <Avatar src={session.user.image} sx={{ width: 32, height: 32 }}>
                 M
               </Avatar>
-            </IconButton>
+              <MoreVertIcon />
+            </Button>
           </Tooltip>
 
           <Menu

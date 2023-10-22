@@ -1,16 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Link from "next/link";
 import axios from "axios";
 import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
 import { useSession } from "next-auth/react";
 import { PAGE_SIZE } from "../../assets/contants/contant";
 import { IconButton, Tooltip } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 const getAllNotes = async (ownerId: string = "") => {
   const res = await axios.get(
@@ -20,6 +18,8 @@ const getAllNotes = async (ownerId: string = "") => {
 };
 export const NoteCard = (props: any) => {
   const { note, isLibrary = false } = props;
+  const router = useRouter();
+
   const { data: session }: any = useSession();
 
   if (session === undefined) return null;
@@ -51,7 +51,23 @@ export const NoteCard = (props: any) => {
         sx={{
           display: "flex",
           width: "90%",
-          boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
+          flexWrap: "wrap",
+          maxWidth: {
+            xs: "100%",
+            sm: "70%",
+            md: "40%",
+          },
+          margin: "30px",
+          borderRadius: "20px",
+          boxShadow: "rgba(0, 0, 0, 0.1) 0px 6px 16px",
+          transition: "0.5s",
+          "&:hover": {
+            boxShadow: "none",
+            background: "#efefef",
+          },
+        }}
+        onClick={() => {
+          router.push(`search/note/${note.id}`, { scroll: true });
         }}
       >
         <Box
@@ -89,11 +105,6 @@ export const NoteCard = (props: any) => {
               {note?.author.substring(0, 50)}
             </Typography>
           </CardContent>
-          <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-            <Link href={`search/note/${note.id}`} aria-label="previous">
-              <Button aria-label="previous">View Note</Button>
-            </Link>
-          </Box>
         </Box>
       </Card>
     )
