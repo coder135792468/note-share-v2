@@ -1,5 +1,4 @@
 import ProvidersWrapper from "@/app/ProviderAuthetication.tsx";
-import { NoteState } from "@/context/NoteContext";
 
 import "./globals.css";
 export default function RootLayout({
@@ -11,9 +10,7 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
-        <ProvidersWrapper>
-          <NoteState>{children}</NoteState>
-        </ProvidersWrapper>
+        <ProvidersWrapper>{children}</ProvidersWrapper>
       </body>
     </html>
   );
