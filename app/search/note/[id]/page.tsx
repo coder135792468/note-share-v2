@@ -1,7 +1,7 @@
 import { Footer } from "@/app/Footer";
 import Header from "@/app/Header";
 import { DownloadButton } from "@/app/layout/DownloadButton";
-import { SaveButton } from "@/app/shared/SaveButton";
+import { SaveButton } from "@/app/layout/SaveButton";
 import { Typography, Button, Divider, Box, Chip } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import axios from "axios";
