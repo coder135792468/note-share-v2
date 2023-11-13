@@ -8,3 +8,14 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
+.landing_page_title {
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  color: transparent;
+  background: linear-gradient(45deg, rgb(157, 214, 220), rgb(179, 255, 48));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 0.02em transparent;
+}

@@ -2,7 +2,7 @@
 import Header from "./Header";
 import { Footer } from "./Footer";
 import "./globals.css";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, styled } from "@mui/material";
 import LandingBanner from "./layout/LandingBanner";
 import { StudyMaterial } from "./components/StudyMaterial";
 import { HOW_TO_USE } from "../assets/contants/contant";
@@ -24,8 +24,27 @@ const cardStyle = {
     xs: "2px solid #efefef",
   },
 };
+const LandingBannerRoot = styled("section")(({ theme }) => ({
+  color: theme.palette.common.white,
+  position: "relative",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  background: "#efefef",
+  flexDirection: "column",
+  [theme.breakpoints.up("xs")]: {
+    height: "50vh",
+  },
+  [theme.breakpoints.up("sm")]: {
+    height: "50vh",
+  },
+  [theme.breakpoints.up("md")]: {
+    height: "80vh",
+  },
+}));
 
-const backgroundImage = "https://docmerit.com/images/home.webp";
+const backgroundImage =
+  "https://theme.zdassets.com/theme_assets/212433/7cc0fa2d8a55c3ca8b077bbe8248548a16caa4d9.svg";
 export default function Home(props: any) {
   return (
     <Box>

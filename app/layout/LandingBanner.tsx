@@ -3,7 +3,7 @@ import { SxProps } from "@mui/system";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { Typewriter } from "react-simple-typewriter";
-import { Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 
 const LandingBannerRoot = styled("section")(({ theme }) => ({
@@ -11,6 +11,8 @@ const LandingBannerRoot = styled("section")(({ theme }) => ({
   position: "relative",
   display: "flex",
   alignItems: "center",
+  justifyContent: "center",
+  flexDirection: "column",
   [theme.breakpoints.up("xs")]: {
     height: "50vh",
   },
@@ -62,6 +64,8 @@ export default function LandingBanner(
             "text-align": "center",
             background: "rgba(255, 255, 255, 0.12)",
             boxShadow: " 0 4px 30px rgba(0, 0, 0, 0.1)",
+            backgroundImage:
+              "linear-gradient(45deg, rgba(49, 230, 121,0.3), rgba(48, 150, 255,0.2))",
             backdropFilter: " blur(2.2px)",
             "-webkit-backdrop-filter": "blur(2.2px)",
             position: " absolute",
@@ -70,38 +74,40 @@ export default function LandingBanner(
             display: "flex",
             justifyContent: "center",
             alignTtems: "center",
+            flexDirection: "column",
             "user-select": "none",
             "-webkit-user-select": "none",
             "-webkit-user-drag": "none",
           }}
         >
           <Typography
+            className="landing_page_title"
             component="p"
             sx={{
-              width: "90%",
               fontSize: {
-                xs: "1rem",
-                sm: "1.5rem",
+                xs: "1.5rem",
+                sm: "2.5rem",
               },
-              marginTop: {
-                xs: "15vh",
-                md: "30vh",
-              },
+              fontWeight: 900,
+              fontFamily: '"Courier New", Courier, monospace',
             }}
           >
+            Welcome to Note Share
+          </Typography>
+          <Box sx={{ height: "50%" }}>
             <Typewriter
               words={[
                 "There is no end to education. It is not that you read a book, pass an examination, and finish with education. ",
                 "The whole of life, from the moment you are born to the moment you die, is a process of learning.",
               ]}
               cursorBlinking={true}
-              cursor={true}
+              cursor={false}
               loop={false}
               delaySpeed={2000}
               typeSpeed={100}
               deleteSpeed={200}
             />
-          </Typography>
+          </Box>
         </Typography>
         <Box
           sx={{

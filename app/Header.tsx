@@ -30,7 +30,7 @@ const Header = ({ showSearch = true }: any) => {
   return (
     <AppBar
       position={showSearch ? "sticky" : "static"}
-      sx={{ background: "#efefef", color: "#000" }}
+      sx={{ background: "rgb(255,255,255)", color: "#000" }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
