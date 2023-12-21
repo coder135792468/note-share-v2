@@ -16,6 +16,7 @@ const getAllNotes = async (ownerId: string = "") => {
   );
   return res.data;
 };
+
 export const NoteCard = (props: any) => {
   const { note, isLibrary = false } = props;
   const router = useRouter();

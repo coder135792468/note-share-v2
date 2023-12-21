@@ -1,19 +1,13 @@
-import { Box, Button, Typography, alpha } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Typography } from "@mui/material";
+import React, { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Loader from "../shared/Loader";
 import { useSession } from "next-auth/react";
-import axios from "axios";
-import { PAGE_SIZE } from "../../assets/contants/contant";
 import NoteContainer from "../shared/NoteContainer";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import * as styles from "./styles/libraryStyles";
+import { getAllNotes } from "../../assets/helper/api";
 
-const getAllNotes = async (ownerId: string = "") => {
-  const res = await axios.get(
-    `http://localhost:8080/library/${ownerId}?size=${PAGE_SIZE}&sort=id,asec`
-  );
-  return res.data;
-};
 export const LibraryButton = () => {
   const { data: session }: any = useSession();
   const [modal, setModal] = useState(false);
@@ -46,30 +40,7 @@ export const LibraryButton = () => {
   return (
     <>
       <Box
-        sx={{
-          padding: "30px",
-          width: {
-            xs: "50%",
-            sm: "auto",
-          },
-          display: {
-            xs: "flex",
-            sm: "inline-block",
-          },
-          justifyContent: "center",
-          alignItems: "center",
-          marginLeft: {
-            xs: "10%",
-            sm: "20px",
-          },
-          margin: "20px",
-          borderRadius: "5px",
-          border: "1px solid #999",
-          boxShadow: `0 0 12px 0 ${alpha(
-            "#919EAB",
-            0.2
-          )}, 0 12px 24px -4px ${alpha("#919EAB", 0.12)}`,
-        }}
+        sx={styles.libraryContainer}
         onClick={(e) => {
           setModal(true);
           getLibrary();

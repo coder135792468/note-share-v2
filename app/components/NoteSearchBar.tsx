@@ -4,6 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import * as styles from "./styles/noteSearchBarStyle";
 
 export const NoteSearchBar = () => {
   const [text, setText] = useState(null);
@@ -18,31 +19,13 @@ export const NoteSearchBar = () => {
       }}
       style={{ width: "100%" }}
     >
-      <Box
-        sx={{
-          p: 2,
-          width: {
-            xs: "100vw",
-            md: "40%",
-          },
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "center",
-        }}
-      >
+      <Box sx={styles.inputFieldCon}>
         <OutlinedInput
           type="search"
           placeholder="Search Notes..."
           value={text}
           onChange={(e: any) => setText(e.target.value)}
-          sx={{
-            maxWidth: 500,
-            height: "40px",
-            background: "white",
-            color: "#555",
-            fontFamily: "sans-serif",
-            borderRadius: "5px 0 0 5px",
-          }}
+          sx={styles.inputField}
         />
         <Link
           href={{
@@ -50,22 +33,7 @@ export const NoteSearchBar = () => {
             query: text ? { search: text } : {},
           }}
         >
-          <Box
-            sx={{
-              height: "40px",
-              background: "blue",
-              width: "50px",
-              borderRadius: "0 5px 5px 0",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              transition: "0.2s ease-in-out",
-              color: "#fff",
-              "&:hover": {
-                opacity: 0.7,
-              },
-            }}
-          >
+          <Box sx={styles.searchIcon}>
             <SearchIcon />
           </Box>
         </Link>

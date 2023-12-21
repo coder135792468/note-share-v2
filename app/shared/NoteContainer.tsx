@@ -1,36 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { NoteCard } from "./NoteCard";
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import "./style.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import axios from "axios";
-import { PAGE_SIZE } from "../../assets/contants/contant";
 import no_record from "@/assets/images/2953962.jpg";
 import Image from "next/image";
-const getNotes = async (
-  page: number = 0,
-  ownerId: any = null,
-  isLibrary: boolean = false
-) => {
-  if (isLibrary) {
-    const res = await axios.get(
-      `http://localhost:8080/library/${ownerId}?size=${PAGE_SIZE}&page=${page}&sort=id,asec`
-    );
-    return res.data;
-  } else if (ownerId) {
-    const res = await axios.get(
-      `http://localhost:8080/notes?size=${PAGE_SIZE}&page=${page}&sort=id,asec&ownerId=${ownerId}`
-    );
-    return res.data;
-  } else {
-    const res = await axios.get(
-      `http://localhost:8080/notes?size=${PAGE_SIZE}&page=${page}&sort=id,asec`
-    );
-    return res.data;
-  }
-};
+import { getNotes } from "../../assets/helper/api";
 
 export default function NoteContainer(props: any) {
   const [notes, setNotes] = useState<null | any>(null);

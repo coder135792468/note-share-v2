@@ -1,9 +1,9 @@
 export const PAGE_SIZE = 3;
 export const STUDY_MATERIAL = [
-  { id: 1, searchFor: "English" },
-  { id: 1, searchFor: "Math" },
-  { id: 1, searchFor: "Stats" },
-  { id: 1, searchFor: "Physics" },
+  { id: 1, searchFor: "English", color: "#83A2FF" },
+  { id: 1, searchFor: "Math", color: "#FECDA6" },
+  { id: 1, searchFor: "Stats", color: "#FFDFDF" },
+  { id: 1, searchFor: "Physics", color: "#F875AA" },
 ];
 export const HOW_TO_USE = [
   {
